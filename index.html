@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Happy Birthday Dad 🎉</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* BACKGROUND */
+body {
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    overflow-x: hidden;
+    background: linear-gradient(180deg, #020111, #0a1a3c);
+}
+
+/* Glow effect */
+body::before {
+    content: "";
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 20% 30%, rgba(59,130,246,0.2), transparent),
+                radial-gradient(circle at 80% 70%, rgba(147,197,253,0.2), transparent);
+    z-index: 0;
+}
+
+/* FIREWORKS CONTAINER */
+.fireworks {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* ROCKET */
+.rocket {
+    position: absolute;
+    width: 4px;
+    height: 20px;
+    background: white;
+    border-radius: 2px;
+    box-shadow: 0 0 10px white;
+}
+
+/* SPARK */
+.spark {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: orange;
+    border-radius: 50%;
+}
+
+/* EXPLOSION */
+.explosion {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+}
+
+/* HERO */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    z-index: 2;
+    position: relative;
+}
+
+.hero h1 {
+    font-size: clamp(30px, 5vw, 55px);
+    animation: fadeUp 1s ease;
+}
+
+.hero p {
+    margin-top: 10px;
+    font-size: 18px;
+    animation: fadeUp 1.5s ease;
+}
+
+.cta-button {
+    margin-top: 25px;
+    padding: 12px 25px;
+    border: none;
+    background: white;
+    color: #0a1a3c;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.cta-button:hover {
+    transform: scale(1.1);
+}
+
+/* GALLERY */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 900px;
+    margin: auto;
+    position: relative;
+    z-index: 2;
+}
+
+/* PHOTO CARD */
+.photo-card {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(12px);
+    padding: 8px;
+    border-radius: 20px;
+    transform: translateY(30px);
+    opacity: 0;
+    transition: 0.6s;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.photo-card:hover {
+    transform: translateY(-5px) scale(1.05);
+}
+
+.photo-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+/* MESSAGE */
+.message-section {
+    padding: 60px 20px;
+}
+
+.message-card {
+    max-width: 700px;
+    margin: auto;
+    background: rgba(255,255,255,0.1);
+    padding: 30px;
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 15px;
+}
+
+/* ANIMATION */
+@keyframes fadeUp {
+    from {opacity:0; transform:translateY(30px);}
+    to {opacity:1; transform:translateY(0);}
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+    .gallery-grid {grid-template-columns: repeat(2,1fr);}
+}
+@media(max-width:500px){
+    .gallery-grid {grid-template-columns:1fr;}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- FIREWORKS -->
+<div id="fireworks" class="fireworks"></div>
+
+<!-- HERO -->
+<section class="hero">
+    <h1>Happy Birthday, Dad ❤️</h1>
+    <p>The strongest and most inspiring person in my life</p>
+
+    <button class="cta-button" onclick="scrollToSection('gallery')">
+        Start 🎂
+    </button>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+    <h2 style="text-align:center;margin-bottom:20px;">Our Memories</h2>
+
+    <div class="gallery-grid">
+        <div class="photo-card"><img src="./assets/photo1.jpeg"></div>
+        <div class="photo-card"><img src="./assets/photo2.jpeg"></div>
+        <div class="photo-card"><img src="./assets/photo3.jpeg"></div>
+
+        <div class="photo-card"><img src="./assets/photo4.jpeg"></div>
+        <div class="photo-card"><img src="./assets/photo5.jpeg"></div>
+        <div class="photo-card"><img src="./assets/photo6.jpeg"></div>
+
+        <div class="photo-card"><img src="./assets/photo7.jpeg"></div>
+        <div class="photo-card"><img src="./assets/photo8.jpeg"></div>
+        <div class="photo-card"><img src="./assets/photo9.jpeg"></div>
+    </div>
+</section>
+
+<!-- MESSAGE -->
+<section class="message-section">
+    <div class="message-card">
+        <h2>A Special Message</h2>
+
+        <p>Happy Birthday Dad ❤️</p>
+        <p>You are my strength, my guide, and my inspiration.</p>
+        <p>Thank you for everything you’ve done for me.</p>
+        <p>I wish you happiness, health, and long life.</p>
+
+        <p><b>Love you always 💫</b></p>
+    </div>
+</section>
+
+<footer>
+    <p>Made with ❤️ for Dad</p>
+</footer>
+
+<script>
+
+/* SCROLL */
+function scrollToSection(id) {
+    document.getElementById(id).scrollIntoView({behavior:"smooth"});
+}
+
+/* CARD ANIMATION */
+const cards = document.querySelectorAll(".photo-card");
+window.addEventListener("scroll", () => {
+    const trigger = window.innerHeight * 0.85;
+    cards.forEach(card => {
+        if (card.getBoundingClientRect().top < trigger) {
+            card.style.opacity = "1";
+            card.style.transform = "translateY(0)";
+        }
+    });
+});
+
+/* 🚀 ROCKET LAUNCH */
+function launchRocket() {
+    const container = document.getElementById("fireworks");
+
+    const rocket = document.createElement("div");
+    rocket.classList.add("rocket");
+
+    const startX = Math.random() * window.innerWidth;
+    const endY = Math.random() * (window.innerHeight / 2);
+
+    rocket.style.left = startX + "px";
+    rocket.style.bottom = "0px";
+
+    container.appendChild(rocket);
+
+    const animation = rocket.animate([
+        { transform: "translateY(0)" },
+        { transform: `translateY(-${window.innerHeight - endY}px)` }
+    ], { duration: 1200 });
+
+    const trail = setInterval(() => createSpark(rocket), 50);
+
+    animation.onfinish = () => {
+        clearInterval(trail);
+        rocket.remove();
+        explode(startX, endY);
+    };
+}
+
+/* ✨ SPARK */
+function createSpark(rocket) {
+    const container = document.getElementById("fireworks");
+    const spark = document.createElement("div");
+    spark.classList.add("spark");
+
+    const rect = rocket.getBoundingClientRect();
+    spark.style.left = rect.left + "px";
+    spark.style.top = rect.top + "px";
+
+    container.appendChild(spark);
+
+    spark.animate([
+        { opacity: 1 },
+        { opacity: 0, transform: "scale(0.5)" }
+    ], { duration: 500 }).onfinish = () => spark.remove();
+}
+
+/* 💥 EXPLOSION */
+function explode(x, y) {
+    const container = document.getElementById("fireworks");
+
+    for (let i = 0; i < 40; i++) {
+        const p = document.createElement("div");
+        p.classList.add("explosion");
+
+        const angle = Math.random() * 2 * Math.PI;
+        const dist = Math.random() * 150;
+
+        p.style.left = x + "px";
+        p.style.top = y + "px";
+        p.style.background = `hsl(${Math.random()*360},100%,60%)`;
+
+        container.appendChild(p);
+
+        p.animate([
+            { transform: "translate(0,0)", opacity: 1 },
+            { transform: `translate(${Math.cos(angle)*dist}px, ${Math.sin(angle)*dist}px)`, opacity: 0 }
+        ], { duration: 1500 }).onfinish = () => p.remove();
+    }
+}
+
+/* START SHOW */
+setInterval(launchRocket, 800);
+
+</script>
+
+</body>
+</html>
