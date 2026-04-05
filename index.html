@@ -25,7 +25,7 @@ body {
     background: linear-gradient(180deg, #020111, #0a1a3c);
 }
 
-/* Glow effect */
+/* Glow */
 body::before {
     content: "";
     position: fixed;
@@ -36,7 +36,7 @@ body::before {
     z-index: 0;
 }
 
-/* FIREWORKS CONTAINER */
+/* FIREWORKS */
 .fireworks {
     position: fixed;
     width: 100%;
@@ -52,7 +52,6 @@ body::before {
     height: 20px;
     background: white;
     border-radius: 2px;
-    box-shadow: 0 0 10px white;
 }
 
 /* SPARK */
@@ -86,28 +85,16 @@ body::before {
 
 .hero h1 {
     font-size: clamp(30px, 5vw, 55px);
-    animation: fadeUp 1s ease;
-}
-
-.hero p {
-    margin-top: 10px;
-    font-size: 18px;
-    animation: fadeUp 1.5s ease;
 }
 
 .cta-button {
-    margin-top: 25px;
+    margin-top: 20px;
     padding: 12px 25px;
     border: none;
     background: white;
     color: #0a1a3c;
     border-radius: 30px;
     cursor: pointer;
-    transition: 0.3s;
-}
-
-.cta-button:hover {
-    transform: scale(1.1);
 }
 
 /* GALLERY */
@@ -117,30 +104,28 @@ body::before {
     gap: 20px;
     max-width: 900px;
     margin: auto;
-    position: relative;
     z-index: 2;
+    position: relative;
 }
 
 /* PHOTO CARD */
 .photo-card {
-    background: rgba(255,255,255,0.08);
-    backdrop-filter: blur(12px);
-    padding: 8px;
+    height: 240px;
+    overflow: hidden;
     border-radius: 20px;
+    background: rgba(255,255,255,0.08);
+    padding: 8px;
     transform: translateY(30px);
     opacity: 0;
     transition: 0.6s;
-    border: 1px solid rgba(255,255,255,0.2);
 }
 
-.photo-card:hover {
-    transform: translateY(-5px) scale(1.05);
-}
-
+/* IMAGE FIX */
 .photo-card img {
     width: 100%;
-    height: 220px;
+    height: 100%;
     object-fit: cover;
+    object-position: top; /* 👈 IMPORTANT */
     border-radius: 15px;
 }
 
@@ -155,19 +140,12 @@ body::before {
     background: rgba(255,255,255,0.1);
     padding: 30px;
     border-radius: 20px;
-    backdrop-filter: blur(15px);
 }
 
 /* FOOTER */
 footer {
     text-align: center;
     padding: 15px;
-}
-
-/* ANIMATION */
-@keyframes fadeUp {
-    from {opacity:0; transform:translateY(30px);}
-    to {opacity:1; transform:translateY(0);}
 }
 
 /* RESPONSIVE */
@@ -183,20 +161,13 @@ footer {
 
 <body>
 
-<!-- FIREWORKS -->
 <div id="fireworks" class="fireworks"></div>
 
-<!-- HERO -->
 <section class="hero">
-    <h1>Happy Birthday, Dad ❤️</h1>
-    <p>The strongest and most inspiring person in my life</p>
-
-    <button class="cta-button" onclick="scrollToSection('gallery')">
-        Start 🎂
-    </button>
+    <h1>Happy Birthday Dad ❤️</h1>
+    <button class="cta-button" onclick="scrollToSection('gallery')">Start 🎂</button>
 </section>
 
-<!-- GALLERY -->
 <section id="gallery">
     <h2 style="text-align:center;margin-bottom:20px;">Our Memories</h2>
 
@@ -215,23 +186,17 @@ footer {
     </div>
 </section>
 
-<!-- MESSAGE -->
 <section class="message-section">
     <div class="message-card">
         <h2>A Special Message</h2>
-
         <p>Happy Birthday Dad ❤️</p>
-        <p>You are my strength, my guide, and my inspiration.</p>
-        <p>Thank you for everything you’ve done for me.</p>
-        <p>I wish you happiness, health, and long life.</p>
-
+        <p>You are my strength and inspiration.</p>
+        <p>Thank you for everything.</p>
         <p><b>Love you always 💫</b></p>
     </div>
 </section>
 
-<footer>
-    <p>Made with ❤️ for Dad</p>
-</footer>
+<footer>Made with ❤️ for Dad</footer>
 
 <script>
 
@@ -252,36 +217,36 @@ window.addEventListener("scroll", () => {
     });
 });
 
-/* 🚀 ROCKET LAUNCH */
+/* 🚀 ROCKET FIREWORK */
 function launchRocket() {
     const container = document.getElementById("fireworks");
 
     const rocket = document.createElement("div");
     rocket.classList.add("rocket");
 
-    const startX = Math.random() * window.innerWidth;
-    const endY = Math.random() * (window.innerHeight / 2);
+    const x = Math.random() * window.innerWidth;
+    const y = Math.random() * window.innerHeight/2;
 
-    rocket.style.left = startX + "px";
+    rocket.style.left = x + "px";
     rocket.style.bottom = "0px";
 
     container.appendChild(rocket);
 
-    const animation = rocket.animate([
+    const anim = rocket.animate([
         { transform: "translateY(0)" },
-        { transform: `translateY(-${window.innerHeight - endY}px)` }
+        { transform: `translateY(-${window.innerHeight - y}px)` }
     ], { duration: 1200 });
 
     const trail = setInterval(() => createSpark(rocket), 50);
 
-    animation.onfinish = () => {
+    anim.onfinish = () => {
         clearInterval(trail);
         rocket.remove();
-        explode(startX, endY);
+        explode(x, y);
     };
 }
 
-/* ✨ SPARK */
+/* SPARK */
 function createSpark(rocket) {
     const container = document.getElementById("fireworks");
     const spark = document.createElement("div");
@@ -295,11 +260,11 @@ function createSpark(rocket) {
 
     spark.animate([
         { opacity: 1 },
-        { opacity: 0, transform: "scale(0.5)" }
+        { opacity: 0 }
     ], { duration: 500 }).onfinish = () => spark.remove();
 }
 
-/* 💥 EXPLOSION */
+/* EXPLOSION */
 function explode(x, y) {
     const container = document.getElementById("fireworks");
 
@@ -323,7 +288,6 @@ function explode(x, y) {
     }
 }
 
-/* START SHOW */
 setInterval(launchRocket, 800);
 
 </script>

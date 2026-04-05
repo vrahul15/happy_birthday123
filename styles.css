@@ -101,23 +101,27 @@ body {
     margin: auto;
 }
 
+/* PHOTO CARD FIX */
 .photo-card {
-    overflow: hidden;
-    border-radius: 15px;
+    overflow: visible;   /* IMPORTANT: prevent clipping */
+    border-radius: 20px;
     transform: translateY(30px);
     opacity: 0;
-    transition: 0.6s ease;
-    background: rgba(255, 255, 255, 0.08);
+    transition: 0.6s;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(12px);
     padding: 10px;
-    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
 }
 
+/* IMAGE FIX (NO CROP EVER) */
 .photo-card img {
-    width: 100%;
-    max-height: 350px;
-    object-fit: contain;
-    border-radius: 10px;
+   width: 100%;
+    height: auto;              /* REMOVE FIXED HEIGHT */
+    object-fit: contain;       /* SHOW FULL IMAGE */
+    border-radius: 15px;
     transition: 0.4s;
+    background: #000;
 }
 
 .photo-card:hover img {
